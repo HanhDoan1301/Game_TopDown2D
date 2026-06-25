@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c633c755166414b44b46ddb207ce9954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSeed: 25
-  timeDetroy: 0.5
+  moveSeed: 18
+  timeDetroy: 1
