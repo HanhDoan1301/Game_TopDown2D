@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bb12908a180384d8882bc8ca5e763a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMoveSpeed: 2
+  enemyMoveSpeed: 1
   maxHp: 50
   hpBar: {fileID: 496478649470696267}
   enterDamage: 5

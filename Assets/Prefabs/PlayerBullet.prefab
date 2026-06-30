@@ -149,3 +149,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSeed: 18
   timeDetroy: 1
+  damage: 10
+  bloodPrefabs: {fileID: 5775226794713375591, guid: e17ff20111857504783df01b0df1026f, type: 3}

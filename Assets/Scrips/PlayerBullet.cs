@@ -6,6 +6,7 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] private float moveSeed = 25f;
     [SerializeField] private float timeDetroy = 0.5f;
     [SerializeField] private float damage = 5f;
+    [SerializeField] GameObject bloodPrefabs;
 
     void Start()
     {
@@ -29,6 +30,8 @@ public class PlayerBullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamge(damage);
+                GameObject blood = Instantiate(bloodPrefabs, transform.position, Quaternion.identity);
+                Destroy(blood, 1f);
             }
             Destroy(gameObject);
         }
