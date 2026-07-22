@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,18 +11,24 @@ public class GameManager : MonoBehaviour
     private bool bossCallsd = false;
     [SerializeField] private Image energyBar;
     [SerializeField] GameObject gameUi;
+
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject gameOverGame;
+    [SerializeField] private GameObject pauseGameMenu;
+    [SerializeField] private GameObject winGame;
+    [SerializeField] private GameObject red;
+    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private CinemachineCamera cam;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentEnergy = 0;
         UpdateEnerguBar();
         boss.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        MainMenu();
+        audioManager.StopAudioGame();
+        cam.Lens.OrthographicSize = 8f;
+        red.SetActive(false);
     }
 
     public void AddEnergy()
@@ -44,6 +51,9 @@ public class GameManager : MonoBehaviour
         boss.SetActive(true);
         spawnEnemy.SetActive(false);
         gameUi.SetActive(false);
+        audioManager.PlayBossAudio();
+        cam.Lens.OrthographicSize = 12f;
+        red.SetActive(true);
     }
 
     private void UpdateEnerguBar()
@@ -54,4 +64,60 @@ public class GameManager : MonoBehaviour
             energyBar.fillAmount = fillAmount;
         }
     }
+
+    public void MainMenu()
+    {
+        mainMenu.SetActive(true);
+        gameOverGame.SetActive(false);
+        pauseGameMenu.SetActive(false);
+        winGame.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void GameOverMenu()
+    {
+        gameOverGame.SetActive(true );
+        mainMenu.SetActive(false );
+        pauseGameMenu.SetActive(false );
+        winGame.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void PauseGameMenu()
+    {
+        pauseGameMenu.SetActive(true );
+        mainMenu.SetActive(false ) ;    
+        gameOverGame.SetActive(false );
+        winGame.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void StartGame()
+    {
+        mainMenu.SetActive(false);
+        gameOverGame.SetActive(false);
+        pauseGameMenu.SetActive(false);
+        winGame.SetActive(false);
+        Time.timeScale = 1f;
+        audioManager.PlayDefaultAudio();
+    }
+
+    public void ResumeGame()
+    {
+        mainMenu.SetActive(false);
+        gameOverGame.SetActive(false);
+        pauseGameMenu.SetActive(false);
+        winGame.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public void WinGame()
+    {
+        winGame.SetActive(true);
+        mainMenu.SetActive(false);
+        gameOverGame.SetActive(false);
+        pauseGameMenu.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+
 }
